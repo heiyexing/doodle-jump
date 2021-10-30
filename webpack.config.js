@@ -18,6 +18,7 @@ module.exports = (env, argv) => {
             loader: 'tinyjs-resource-loader',
             options: {
               process: isDev,
+              // mode: 'file',
               loader: 'none',
               output: tilesetDir,
               image: {
