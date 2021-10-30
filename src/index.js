@@ -1,11 +1,12 @@
-import * as resources from './game/resources';
-import MainMenuLayer from './game/MainMenuLayer';
+import * as resources from './resources';
+// import HomeLayer from './layer/HomeLayer';
+import StartLayer from './layer/StartLayer';
 
 require('./css/index.less');
 
 Tiny.app = new Tiny.Application({
   showFPS: true,
-  debug: true,
+  debug: false,
   referWidth: 375,
   dpi: 2,
   renderOptions: {
@@ -15,7 +16,6 @@ Tiny.app = new Tiny.Application({
 
 const main = {
   init () {
-    console.log('init');
     Tiny.resources = resources;
     this.resourceLoad();
   },
@@ -39,7 +39,7 @@ const main = {
         body.removeChild(percent);
         body.removeChild(progress.parentNode);
 
-        const mainMenuLayer = new MainMenuLayer();
+        const mainMenuLayer = new StartLayer();
         Tiny.app.run(mainMenuLayer);
         mainMenuLayer.emit('transitionend');
       },

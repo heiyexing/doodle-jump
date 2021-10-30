@@ -1,7 +1,7 @@
 import * as ui from 'tinyjs-plugin-ui';
 import StartLayer from './StartLayer';
 
-class MainMenuLayer extends Tiny.Container {
+class HomeLayer extends Tiny.Container {
   constructor() {
     super();
 
@@ -9,8 +9,8 @@ class MainMenuLayer extends Tiny.Container {
 
     // Logo
     this.logo = Tiny.Sprite.fromImage(Tiny.resources.logoPNG);
-    this.logo.setAnchor(0.5, 0);
-    this.logo.setPosition(width / 2, 40);
+    this.logo.setAnchor(0.5, 0.5);
+    this.logo.setPosition(width / 2, height / 2);
 
     // 开始按钮
     const startBtn = new ui.Button({
@@ -24,24 +24,11 @@ class MainMenuLayer extends Tiny.Container {
     startBtn.setPosition(width / 2, height - 260);
 
     this.addChild(this.logo, startBtn);
-
-    this.on('transitionend', function () {
-      this.startAction();
-    });
   }
 
   onReady() {
-    // console.log('--- start ---');
-    Tiny.app.replaceScene(new StartLayer(), 'SlideInB', 800);
-  }
-
-  startAction() {
-    const { width, height } = Tiny.WIN_SIZE;
-    const action = Tiny.MoveTo(1000, Tiny.point(width / 2, height / 2));
-    action.setEasing(Tiny.TWEEN.Easing.Exponential.Out);
-
-    this.logo.runAction(Tiny.RepeatForever(Tiny.Back(action), 1200));
+    Tiny.app.replaceScene(new StartLayer(), 'SlideInR', 300);
   }
 }
 
-export default MainMenuLayer;
+export default HomeLayer;
