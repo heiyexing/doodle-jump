@@ -1,6 +1,6 @@
 const BLOCK_SIZE = 200;
 
-class BackgroundModel extends Tiny.Container {
+class Background extends Tiny.Container {
   constructor() {
     super();
 
@@ -24,4 +24,4 @@ class BackgroundModel extends Tiny.Container {
   }
 }
 
-export default BackgroundModel;
+export default Background;

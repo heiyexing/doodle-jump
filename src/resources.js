@@ -4,20 +4,20 @@
 
 const logoPNG = 'res/images/Tiny.js.png';
 const backgroundPNG = 'res/frames/background.png';
-// const charactorLeftPNG = 'res/frames/charactor/charactorLeft.png';
-// const charactorRightPNG = 'res/frames/charactor/charactorRight.png';
-// const charactorSquatLeftPNG = 'res/frames/charactor/charactorSquatLeft.png';
-// const charactorSquatRightPNG = 'res/frames/charactor/charactorSquatRight.png';
+const roleLeftPNG = 'res/frames/role/roleLeft.png';
+const roleRightPNG = 'res/frames/role/roleRight.png';
+const roleSquatLeftPNG = 'res/frames/role/roleSquatLeft.png';
+const roleSquatRightPNG = 'res/frames/role/roleSquatRight.png';
 const tilesetVendorJSON = 'res/images/tilesets/tileset-vendor.json';
-const tilesetHeroJSON = 'res/images/tilesets/tileset-charactor.json';
+const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
 
 export {
   logoPNG,
   backgroundPNG,
-  // charactorLeftPNG,
-  // charactorRightPNG,
-  // charactorSquatLeftPNG,
-  // charactorSquatRightPNG,
+  roleLeftPNG,
+  roleRightPNG,
+  roleSquatLeftPNG,
+  roleSquatRightPNG,
   tilesetVendorJSON,
   tilesetHeroJSON,
 };

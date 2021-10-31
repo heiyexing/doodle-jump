@@ -15,24 +15,25 @@ Tiny.app = new Tiny.Application({
 });
 
 const main = {
-  init () {
+  init() {
     Tiny.resources = resources;
     this.resourceLoad();
   },
-  resourceLoad () {
+  resourceLoad() {
     const progress = document.getElementById('progress');
     const percent = document.getElementById('percent');
 
-    Tiny.Loader.run({
+    const loader = new Tiny.loaders.Loader();
+    loader.run({
       resources: Object.values(resources),
-      onProgress (pre, res) {
+      onProgress(pre, res) {
         // console.log('percent:', pre + '%', res.name);
         const num = ~~pre;
         //更新UI
         percent.innerHTML = `${num}%`;
         progress.style.width = `${num}%`;
       },
-      onAllComplete () {
+      onAllComplete() {
         // console.log('all complete');
         //clear DOM
         const body = document.body;
@@ -49,11 +50,19 @@ const main = {
 main.init();
 
 // 页面压后台，让游戏停下来
-document.addEventListener('pause', function (e) {
-  Tiny.app.pause();
-}, false);
+document.addEventListener(
+  'pause',
+  function (e) {
+    Tiny.app.pause();
+  },
+  false
+);
 
 // 页面恢复运行，让游戏继续
-document.addEventListener('resume', function (e) {
-  Tiny.app.resume();
-}, false);
+document.addEventListener(
+  'resume',
+  function (e) {
+    Tiny.app.resume();
+  },
+  false
+);

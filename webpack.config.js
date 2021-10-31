@@ -64,6 +64,10 @@ module.exports = (env, argv) => {
       }),
       new CopyWebpackPlugin([
         {
+          from: 'res/frames',
+          to: 'res/frames',
+        },
+        {
           from: 'res/images',
           to: 'res/images',
         },
