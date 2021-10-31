@@ -36,7 +36,7 @@ class Role extends Tiny.Container {
 
   initFoot() {
     // eslint-disable-next-line new-cap
-    const foot = new Tiny.Sprite.fromImage(this.getRoleImage('right'));
+    const foot = new Tiny.Sprite();
     foot.width = ROLE_FOOT_X_RANGE[1] - ROLE_FOOT_X_RANGE[0];
     foot.height = ROLE_FOOT_Y_RANGE[1] - ROLE_FOOT_Y_RANGE[0];
     foot.setPosition(ROLE_FOOT_X_RANGE[0], ROLE_FOOT_Y_RANGE[0]);
@@ -57,12 +57,9 @@ class Role extends Tiny.Container {
     }
   }
 
-  isKnock(sprite) {
-    const { x: footX, y: footY, width: footWidth, height: footHeight } = this.foot.getBounds();
-    const { x: spriteX, y: spriteY, width: spriteWidth, height: spriteHeight } = sprite.getBounds();
-    const footRect = new Tiny.Rectangle(footX, footY, footWidth, footHeight);
-    const spirteRect = new Tiny.Rectangle(spriteX, spriteY, spriteWidth, spriteHeight);
-    return Tiny.rectIntersectsRect(footRect, spirteRect);
+  getInspectRect() {
+    const { x, y, width, height } = this.foot.getBounds();
+    return new Tiny.Rectangle(x, y, width, height);
   }
 
   getRoleImage(direction = 'right') {

@@ -24,6 +24,14 @@ class Board extends Tiny.Container {
     this.ticker = this.initTicker();
   }
 
+  scrollUp(scrollY) {
+    this.boardList.forEach(board => {
+      const { _y } = board.getPosition();
+      board.setPositionY(_y + scrollY);
+    });
+    this.autoFillBoards();
+  }
+
   autoFillBoards() {
     if (!this.boardList.length) {
       return;
@@ -78,11 +86,16 @@ class Board extends Tiny.Container {
         const { _y } = board.getPosition();
         return _y > height;
       });
-      this.boardList.filter(board => !recycleBoardList.includes(board));
+      this.boardList = this.boardList.filter(board => !recycleBoardList.includes(board));
       this.boardPoll.push(...recycleBoardList);
     });
     ticker.start();
     return ticker;
+  }
+
+  getInspectRect(board) {
+    const { x, y, width, height } = board.getBounds();
+    return new Tiny.Rectangle(x, y, width, height / 3);
   }
 }
 
