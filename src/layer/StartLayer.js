@@ -9,6 +9,7 @@ import {
   VERT_SPEED_LIMIT,
 } from '../config';
 import Keyboard from 'tinyjs-plugin-keyboard';
+import Music from '../utils/Music';
 
 class StartLayer extends Tiny.Container {
   constructor() {
@@ -22,16 +23,20 @@ class StartLayer extends Tiny.Container {
       (height - CHARACTOR_HEIGHT) / 2
     );
 
-    this.initKeyScene();
+    this.initKeyEvent();
+    this.initTouchEvent();
 
     this.addChild(background, role);
     this.background = background;
     this.role = role;
     this.ticker = this.initTicker();
+    this.music = new Music();
 
     this.roleVertSpeed = 0;
     this.isPressLeft = false;
     this.isPressRight = false;
+
+    this.setEventEnabled(true);
   }
 
   initTicker() {
@@ -73,10 +78,11 @@ class StartLayer extends Tiny.Container {
   }
 
   doJump() {
+    this.music.play('jump');
     this.roleVertSpeed = DEBOUNCE_VERT_SPEED;
   }
 
-  initKeyScene() {
+  initKeyEvent() {
     const leftKeyScene = new Keyboard(37);
     const rightKeyScene = new Keyboard(39);
 
@@ -94,6 +100,25 @@ class StartLayer extends Tiny.Container {
     rightKeyScene.release = () => {
       this.isPressRight = false;
     };
+  }
+
+  initTouchEvent() {
+    const { width } = Tiny.WIN_SIZE;
+    this.on('pointerdown', (e) => {
+      const { x } = e.data.getLocalPosition(this.parent);
+      if (x < width / 2) {
+        this.isPressLeft = true;
+        this.role.faceDirection('left');
+      } else {
+        this.isPressRight = true;
+        this.role.faceDirection('right');
+      }
+    });
+
+    this.on('pointerup', (e) => {
+      this.isPressLeft = false;
+      this.isPressRight = false;
+    });
   }
 }
 
