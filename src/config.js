@@ -12,4 +12,7 @@ export const HORZ_SPEED = 12;
 export const INIT_BOARD_POLL_SIZE = 20;
 export const BOARD_WIDTH = 200;
 export const BOARD_HEIGHT = 50;
+
 export const NEED_FILL_BOARD_SIZE = 300;
+export const NEED_FILL_BOARD_LEVEL = 20;
+export const MAX_JUMP_HEIGHT = 600;

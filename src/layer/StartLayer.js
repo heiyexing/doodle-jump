@@ -12,6 +12,8 @@ import Keyboard from 'tinyjs-plugin-keyboard';
 import Music from '../utils/Music';
 import Board from '../model/Board';
 import Score from '../utils/Score';
+// import Button from '../utils/Button';
+import Message from '../utils/Message';
 
 class StartLayer extends Tiny.Container {
   constructor() {
@@ -21,15 +23,19 @@ class StartLayer extends Tiny.Container {
     const board = new Board();
     const background = new Background();
     const score = new Score();
+    const message = new Message();
+    // const button = new Button();
 
     this.initKeyEvent();
     this.initTouchEvent();
-    this.addChild(background, role, board, score);
+    this.addChild(background, board, score, role, message);
 
     this.background = background;
     this.role = role;
     this.board = board;
     this.score = score;
+    // this.button = button;
+    this.message = message;
 
     this.ticker = this.initTicker();
     this.music = new Music();
@@ -39,12 +45,22 @@ class StartLayer extends Tiny.Container {
     this.isPressRight = false;
     this.scrollTarget = 'role';
 
+    message.on('start', () => {
+      this.ticker.start();
+    });
+
+    // button.on('stop', () => {
+    //   this.ticker.stop();
+    // });
+    // button.on('start', () => {
+    //   this.ticker.start();
+    // });
+
     this.setEventEnabled(true);
   }
 
   initTicker() {
     const ticker = new Tiny.ticker.Ticker();
-    ticker.start();
     setTimeout(() => {
       ticker.add((time) => this.onTicker(time));
     }, 0);
@@ -95,16 +111,16 @@ class StartLayer extends Tiny.Container {
     } else {
       this.board.scrollUp(Math.abs(scrollY));
       this.score.addScore(Math.abs(scrollY));
+      this.board.setRespectLevel(Math.floor(this.score.getScore() / 10));
     }
 
     if (newY + ROLE_HEIGHT > height) {
-      this.doJump();
-      this.scrollTarget = oldRoleY < height / 2 ? 'board' : 'role';
+
     }
   }
 
   doJump() {
-    // this.music.play('jump');
+    this.music.play('jump');
     this.roleVertSpeed = DEBOUNCE_VERT_SPEED;
   }
 

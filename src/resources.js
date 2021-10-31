@@ -2,7 +2,7 @@
 // import 'res/frames/vendor/.tileset';
 // import 'res/frames/board/.tileset';
 
-const logoPNG = 'res/images/Tiny.js.png';
+const logoJPG = 'res/images/logo.jpeg';
 const backgroundPNG = 'res/frames/background.png';
 const roleLeftPNG = 'res/frames/role/roleLeft.png';
 const roleRightPNG = 'res/frames/role/roleRight.png';
@@ -13,7 +13,7 @@ const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
 const board1PNG = 'res/frames/board/board1.png';
 
 export {
-  logoPNG,
+  logoJPG,
   backgroundPNG,
   roleLeftPNG,
   roleRightPNG,

@@ -1,7 +1,7 @@
 import {
   BOARD_HEIGHT,
   BOARD_WIDTH,
-  INIT_BOARD_POLL_SIZE,
+  INIT_BOARD_POLL_SIZE, MAX_JUMP_HEIGHT, NEED_FILL_BOARD_LEVEL,
   NEED_FILL_BOARD_SIZE,
 } from '../config';
 
@@ -14,6 +14,7 @@ class Board extends Tiny.Container {
     this.setPosition(0, 0);
     this.width = width;
     this.height = height;
+    this.respectRange = NEED_FILL_BOARD_SIZE;
 
     this.boardPoll = this.initBoardPoll();
     this.boardList = [];
@@ -22,6 +23,11 @@ class Board extends Tiny.Container {
     this.autoFillBoards();
 
     this.ticker = this.initTicker();
+  }
+
+  setRespectLevel(level) {
+    const newRange = NEED_FILL_BOARD_SIZE + level * NEED_FILL_BOARD_LEVEL;
+    this.respectRange = newRange > MAX_JUMP_HEIGHT ? MAX_JUMP_HEIGHT : newRange;
   }
 
   scrollUp(scrollY) {
@@ -38,10 +44,10 @@ class Board extends Tiny.Container {
     }
     const topBoard = this.boardList[this.boardList.length - 1];
     const { _y } = topBoard.getPosition();
-    if (_y > NEED_FILL_BOARD_SIZE) {
+    if (_y > this.respectRange) {
       const { width } = Tiny.WIN_SIZE;
       const x = Math.random() * (width - BOARD_WIDTH);
-      const y = _y - (1 - Math.random() / 2) * NEED_FILL_BOARD_SIZE;
+      const y = _y - (1 - Math.random() / 2) * this.respectRange;
       this.insertBoard(x, y);
       this.autoFillBoards();
     }

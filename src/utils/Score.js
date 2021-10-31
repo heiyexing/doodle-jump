@@ -12,15 +12,19 @@ class Score extends Tiny.Container {
     this.addScore(0);
   }
 
+  getScore() {
+    return this.score;
+  }
+
   addScore(score) {
     const { width } = Tiny.WIN_SIZE;
-    this.score += score;
+    this.score += score / 300;
     this.text.text = this.getText();
     this.setPosition(width - this.text.width - 10, 10);
   }
 
   getText() {
-    return `分数: ${Math.floor(this.score / 300)}`;
+    return `分数: ${Math.floor(this.score)}`;
   }
 }
 

@@ -1,5 +1,6 @@
 import * as ui from 'tinyjs-plugin-ui';
 import StartLayer from './StartLayer';
+import Background from '../model/Background';
 
 class HomeLayer extends Tiny.Container {
   constructor() {
@@ -8,7 +9,7 @@ class HomeLayer extends Tiny.Container {
     const { width, height } = Tiny.WIN_SIZE;
 
     // Logo
-    this.logo = Tiny.Sprite.fromImage(Tiny.resources.logoPNG);
+    this.logo = Tiny.Sprite.fromImage(Tiny.resources.logoJPG);
     this.logo.setAnchor(0.5, 0.5);
     this.logo.setPosition(width / 2, height / 2);
 
@@ -23,11 +24,13 @@ class HomeLayer extends Tiny.Container {
     startBtn.setPivot(startBtn.width / 2, startBtn.height / 2);
     startBtn.setPosition(width / 2, height - 260);
 
-    this.addChild(this.logo, startBtn);
+    const background = new Background();
+
+    this.addChild(background, this.logo, startBtn);
   }
 
   onReady() {
-    Tiny.app.replaceScene(new StartLayer(), 'SlideInR', 300);
+    Tiny.app.replaceScene(new StartLayer(), 'FadeColor', 300);
   }
 }
 
