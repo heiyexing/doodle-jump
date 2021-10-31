@@ -1,8 +1,8 @@
 import Background from '../model/Background';
 import Role from '../model/Role';
 import {
-  CHARACTOR_HEIGHT,
-  CHARACTOR_WIDTH,
+  ROLE_HEIGHT,
+  ROLE_WIDTH,
   DEBOUNCE_VERT_SPEED,
   HORZ_SPEED,
   VERT_ADD_SPEED,
@@ -10,25 +10,24 @@ import {
 } from '../config';
 import Keyboard from 'tinyjs-plugin-keyboard';
 import Music from '../utils/Music';
+import Board from '../model/Board';
 
 class StartLayer extends Tiny.Container {
   constructor() {
     super();
-    const { width, height } = Tiny.WIN_SIZE;
 
-    const background = new Background();
     const role = new Role();
-    role.setPosition(
-      (width - CHARACTOR_WIDTH) / 2,
-      (height - CHARACTOR_HEIGHT) / 2
-    );
+    const board = new Board();
+    const background = new Background();
 
     this.initKeyEvent();
     this.initTouchEvent();
+    this.addChild(background, role, board);
 
-    this.addChild(background, role);
     this.background = background;
     this.role = role;
+    this.board = board;
+
     this.ticker = this.initTicker();
     this.music = new Music();
 
@@ -49,8 +48,9 @@ class StartLayer extends Tiny.Container {
   }
 
   onTicker(time) {
+    const role = this.role;
     const { width, height } = Tiny.WIN_SIZE;
-    const { _x: oldX, _y: oldY } = this.role.getPosition();
+    const { _x: oldX, _y: oldY } = role.getPosition();
     this.roleVertSpeed =
       this.roleVertSpeed < VERT_SPEED_LIMIT
         ? this.roleVertSpeed + time * VERT_ADD_SPEED
@@ -60,25 +60,38 @@ class StartLayer extends Tiny.Container {
       const leftLimit = 0;
       const newX = oldX - HORZ_SPEED * time;
       if (newX >= leftLimit) {
-        this.role.setPositionX(newX);
+        role.setPositionX(newX);
       }
     }
     if (!this.isPressLeft && this.isPressRight) {
-      const rightLimit = width - CHARACTOR_WIDTH;
+      const rightLimit = width - ROLE_WIDTH;
       const newX = oldX + HORZ_SPEED * time;
       if (newX <= rightLimit) {
-        this.role.setPositionX(newX);
+        role.setPositionX(newX);
       }
     }
+
+    if (this.roleVertSpeed >= 0) {
+      const touchBoard = this.board.boardList.find((board) => {
+        return this.role.isKnock(board);
+      });
+      if (touchBoard) {
+        this.doJump();
+        return;
+      }
+    }
+
     let newY = oldY + this.roleVertSpeed * time;
-    this.role.setPositionY(newY);
-    if (newY + CHARACTOR_HEIGHT > height) {
+    role.setPositionY(newY);
+
+    if (newY + ROLE_HEIGHT > height) {
       this.doJump();
     }
   }
 
   doJump() {
-    this.music.play('jump');
+    // TODO: 嫌吵，先关了吧
+    // this.music.play('jump');
     this.roleVertSpeed = DEBOUNCE_VERT_SPEED;
   }
 

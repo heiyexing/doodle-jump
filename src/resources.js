@@ -10,6 +10,7 @@ const roleSquatLeftPNG = 'res/frames/role/roleSquatLeft.png';
 const roleSquatRightPNG = 'res/frames/role/roleSquatRight.png';
 const tilesetVendorJSON = 'res/images/tilesets/tileset-vendor.json';
 const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
+const board1PNG = 'res/frames/board/board1.png';
 
 export {
   logoPNG,
@@ -20,4 +21,5 @@ export {
   roleSquatRightPNG,
   tilesetVendorJSON,
   tilesetHeroJSON,
+  board1PNG,
 };

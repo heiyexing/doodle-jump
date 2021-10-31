@@ -29,21 +29,19 @@ module.exports = (env, argv) => {
               },
             },
           },
-        }, {
+        },
+        {
           test: /\.(less|css)$/i,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'less-loader',
-          ],
-        }, {
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [ 'babel-preset-es2015', 'babel-preset-stage-0' ],
-              plugins: [ 'babel-plugin-transform-runtime' ],
+              presets: ['babel-preset-es2015', 'babel-preset-stage-0'],
+              plugins: ['babel-plugin-transform-runtime'],
             },
           },
         },
@@ -51,7 +49,7 @@ module.exports = (env, argv) => {
     },
     resolve: {
       alias: {
-        'res': path.resolve('./res'),
+        res: path.resolve('./res'),
       },
     },
     plugins: [
@@ -64,16 +62,8 @@ module.exports = (env, argv) => {
       }),
       new CopyWebpackPlugin([
         {
-          from: 'res/frames',
-          to: 'res/frames',
-        },
-        {
-          from: 'res/images',
-          to: 'res/images',
-        },
-        {
-          from: 'res/sounds',
-          to: 'res/sounds',
+          from: 'res',
+          to: 'res',
         },
       ]),
     ],
