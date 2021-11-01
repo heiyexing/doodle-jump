@@ -1,6 +1,6 @@
 import * as resources from './resources';
-// import HomeLayer from './layer/HomeLayer';
-import StartLayer from './layer/StartLayer';
+import HomeLayer from './layer/HomeLayer';
+// import StartLayer from './layer/StartLayer';
 
 require('./css/index.less');
 
@@ -40,7 +40,7 @@ const main = {
         body.removeChild(percent);
         body.removeChild(progress.parentNode);
 
-        const mainMenuLayer = new StartLayer();
+        const mainMenuLayer = new HomeLayer();
         Tiny.app.run(mainMenuLayer);
         mainMenuLayer.emit('transitionend');
       },
