@@ -14,6 +14,7 @@ import Board from '../model/Board';
 import Score from '../utils/Score';
 // import Button from '../utils/Button';
 import Message from '../utils/Message';
+import EndLayer from './EndLayer';
 
 class StartLayer extends Tiny.Container {
   constructor() {
@@ -115,7 +116,9 @@ class StartLayer extends Tiny.Container {
     }
 
     if (newY + ROLE_HEIGHT > height) {
-
+      console.log('我死掉了');
+      this.ticker.stop();
+      Tiny.app.replaceScene(new EndLayer(), 'FadeColor', 300);
     }
   }
 
