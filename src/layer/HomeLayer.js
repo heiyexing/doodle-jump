@@ -15,10 +15,10 @@ class HomeLayer extends Tiny.Container {
 
     // 开始按钮
     const startBtn = new ui.Button({
-      background: Tiny.Sprite.fromFrame('tileset-vendor-start.png'),
+      background: Tiny.Sprite.fromFrame(Tiny.resources['startPNG']),
       active: {
-        scale: 1.4,
         callback: this.onReady,
+        scale: 1.2,
       },
     });
     startBtn.setPivot(startBtn.width / 2, startBtn.height / 2);

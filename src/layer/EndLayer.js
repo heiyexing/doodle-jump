@@ -9,7 +9,9 @@ class EndLayer extends Tiny.Container {
     const { width, height } = Tiny.WIN_SIZE;
 
     // Logo
-    this.logo = Tiny.Sprite.fromImage(Tiny.resources.logoEndPNG);
+    this.logo = Tiny.Sprite.fromImage(Tiny.resources['caiPNG']);
+    this.logo.width = 400;
+    this.logo.height = 450;
     this.logo.setAnchor(0.5, 0.5);
     this.logo.setPosition(width / 2, height / 2);
 
@@ -22,7 +24,7 @@ class EndLayer extends Tiny.Container {
 
     // 结束按钮
     const endBtn = new ui.Button({
-      background: Tiny.Sprite.fromFrame('tileset-vendor-start.png'),
+      background: Tiny.Sprite.fromFrame(Tiny.resources['resetPNG']),
       active: {
         scale: 1.4,
         callback: this.onReady,

@@ -12,6 +12,11 @@ const roleSquatRightPNG = 'res/frames/role/roleSquatRight.png';
 const tilesetVendorJSON = 'res/images/tilesets/tileset-vendor.json';
 const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
 const board1PNG = 'res/frames/board/board1.png';
+const startPNG = 'res/images/start.png';
+const resumePNG = 'res/images/resume.png';
+const resetPNG = 'res/images/reset.png';
+const pausePNG = 'res/images/pause.png';
+const caiPNG = 'res/images/cai.png';
 
 const fontPNG = 'res/fonts/font.png';
 const fontFnt = 'res/fonts/font.fnt';
@@ -26,6 +31,11 @@ export {
   tilesetVendorJSON,
   tilesetHeroJSON,
   board1PNG,
+  startPNG,
+  resumePNG,
+  resetPNG,
+  pausePNG,
+  caiPNG,
 
   fontFnt,
   fontPNG,

@@ -118,7 +118,7 @@ class StartLayer extends Tiny.Container {
     if (newY + ROLE_HEIGHT > height) {
       console.log('我死掉了');
       this.ticker.stop();
-      Tiny.app.replaceScene(new EndLayer(), 'FadeColor', 300);
+      Tiny.app.replaceScene(new EndLayer(), 'FadeColor', 1);
     }
   }
 
