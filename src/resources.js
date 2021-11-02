@@ -3,6 +3,7 @@
 // import 'res/frames/board/.tileset';
 
 const logoJPG = 'res/images/logo.jpeg';
+const logoEndPNG = 'res/images/logo-end.png';
 const backgroundPNG = 'res/frames/background.png';
 const roleLeftPNG = 'res/frames/role/roleLeft.png';
 const roleRightPNG = 'res/frames/role/roleRight.png';
@@ -12,8 +13,11 @@ const tilesetVendorJSON = 'res/images/tilesets/tileset-vendor.json';
 const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
 const board1PNG = 'res/frames/board/board1.png';
 
+const fontPNG = 'res/fonts/font.png';
+const fontFnt = 'res/fonts/font.fnt';
 export {
   logoJPG,
+  logoEndPNG,
   backgroundPNG,
   roleLeftPNG,
   roleRightPNG,
@@ -22,4 +26,7 @@ export {
   tilesetVendorJSON,
   tilesetHeroJSON,
   board1PNG,
+
+  fontFnt,
+  fontPNG,
 };
