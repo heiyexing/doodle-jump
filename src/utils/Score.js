@@ -1,3 +1,5 @@
+import { ADD_LEVEL_SCORE_RANGE } from '../config';
+
 class Score extends Tiny.Container {
   constructor() {
     super();
@@ -18,9 +20,16 @@ class Score extends Tiny.Container {
 
   addScore(score) {
     const { width } = Tiny.WIN_SIZE;
+    const oldScore = this.score;
     this.score += score / 300;
     this.text.text = this.getText();
     this.setPosition(width - this.text.width - 10, 10);
+
+    const oldLevel = Math.floor(oldScore / ADD_LEVEL_SCORE_RANGE);
+    const newLevel = Math.floor(this.score / ADD_LEVEL_SCORE_RANGE);
+    if (oldLevel !== newLevel) {
+      this.emit('addLevel', newLevel);
+    }
   }
 
   getText() {

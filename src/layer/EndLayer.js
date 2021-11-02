@@ -1,6 +1,7 @@
 import * as ui from 'tinyjs-plugin-ui';
 import StartLayer from './StartLayer';
 import Background from '../model/Background';
+import music from '../utils/Music';
 
 class EndLayer extends Tiny.Container {
   constructor() {
@@ -27,6 +28,7 @@ class EndLayer extends Tiny.Container {
       background: Tiny.Sprite.fromFrame(Tiny.resources['resetPNG']),
       active: {
         scale: 1.4,
+
         callback: this.onReady,
       },
     });
@@ -34,6 +36,7 @@ class EndLayer extends Tiny.Container {
     endBtn.setPosition(width / 2, height - 260);
 
     const background = new Background();
+    music.play('die');
 
     this.addChild(background, this.logo, endBtn, gameOver);
   }

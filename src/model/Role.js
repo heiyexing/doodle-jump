@@ -57,7 +57,7 @@ class Role extends Tiny.Container {
     }
   }
 
-  getInspectRect() {
+  getJumpInspectRect() {
     const { x, y, width, height } = this.foot.getBounds();
     return new Tiny.Rectangle(x, y, width, height);
   }

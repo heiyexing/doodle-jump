@@ -9,10 +9,8 @@ import {
   VERT_SPEED_LIMIT,
 } from '../config';
 import Keyboard from 'tinyjs-plugin-keyboard';
-import Music from '../utils/Music';
 import Board from '../model/Board';
 import Score from '../utils/Score';
-// import Button from '../utils/Button';
 import Message from '../utils/Message';
 import EndLayer from './EndLayer';
 
@@ -25,7 +23,6 @@ class StartLayer extends Tiny.Container {
     const background = new Background();
     const score = new Score();
     const message = new Message();
-    // const button = new Button();
 
     this.initKeyEvent();
     this.initTouchEvent();
@@ -35,27 +32,20 @@ class StartLayer extends Tiny.Container {
     this.role = role;
     this.board = board;
     this.score = score;
-    // this.button = button;
     this.message = message;
 
     this.ticker = this.initTicker();
-    this.music = new Music();
 
     this.roleVertSpeed = 0;
     this.isPressLeft = false;
     this.isPressRight = false;
     this.scrollTarget = 'role';
 
+    this.score.on('addLevel', (level) => this.addLevel(level));
+
     message.on('start', () => {
       this.ticker.start();
     });
-
-    // button.on('stop', () => {
-    //   this.ticker.stop();
-    // });
-    // button.on('start', () => {
-    //   this.ticker.start();
-    // });
 
     this.setEventEnabled(true);
   }
@@ -95,13 +85,14 @@ class StartLayer extends Tiny.Container {
     if (this.roleVertSpeed >= 0) {
       const touchBoard = this.board.boardList.find((board) => {
         return Tiny.rectIntersectsRect(
-          this.role.getInspectRect(),
+          this.role.getJumpInspectRect(),
           this.board.getInspectRect(board)
         );
       });
       if (touchBoard) {
         this.doJump();
         this.scrollTarget = oldRoleY < height / 2 ? 'board' : 'role';
+        this.board.dealBoardEvent(touchBoard);
       }
     }
 
@@ -112,18 +103,16 @@ class StartLayer extends Tiny.Container {
     } else {
       this.board.scrollUp(Math.abs(scrollY));
       this.score.addScore(Math.abs(scrollY));
-      this.board.setRespectLevel(Math.floor(this.score.getScore() / 10));
     }
 
     if (newY + ROLE_HEIGHT > height) {
-      console.log('我死掉了');
+      console.log('阿伟死了');
       this.ticker.stop();
       Tiny.app.replaceScene(new EndLayer(), 'FadeColor', 1);
     }
   }
 
   doJump() {
-    this.music.play('jump');
     this.roleVertSpeed = DEBOUNCE_VERT_SPEED;
   }
 
@@ -164,6 +153,10 @@ class StartLayer extends Tiny.Container {
       this.isPressLeft = false;
       this.isPressRight = false;
     });
+  }
+
+  addLevel(level) {
+    this.board.setRespectLevel(level);
   }
 }
 

@@ -12,6 +12,7 @@ const roleSquatRightPNG = 'res/frames/role/roleSquatRight.png';
 const tilesetVendorJSON = 'res/images/tilesets/tileset-vendor.json';
 const tilesetHeroJSON = 'res/images/tilesets/tileset-hero.json';
 const board1PNG = 'res/frames/board/board1.png';
+const board4PNG = 'res/frames/board/board4.png';
 const startPNG = 'res/images/start.png';
 const resumePNG = 'res/images/resume.png';
 const resetPNG = 'res/images/reset.png';
@@ -31,6 +32,7 @@ export {
   tilesetVendorJSON,
   tilesetHeroJSON,
   board1PNG,
+  board4PNG,
   startPNG,
   resumePNG,
   resetPNG,
