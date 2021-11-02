@@ -28,7 +28,6 @@ alinode-5:
       chown -R admin:admin ./
       time tnpm i --install-alinode=5 --no-cache --internal-oss-cache
       node -e "console.log('%j, %j', process.versions, process.execPath)"
-      time tnpm run ci
   coverage: '(?<=Lines\s{1,10}:\s{1,10})\d{1,10}.\d{1,10}'
   passrate: '(?<=PASS_RATE: )\d{1,10}.\d{1,10}'
   publisher:
