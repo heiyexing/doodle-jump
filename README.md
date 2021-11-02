@@ -4,6 +4,19 @@
 
 ![](https://zos.alipayobjects.com/rmsportal/nJBojwdMJfUqpCWvwyoA.png@120w)
 
+## Badges
+
+[![Build status][build-status-image]][aone-ci-url]
+[![Line coverage][line-coverage-image]][aone-ci-url]
+[![Branch coverage][branch-coverage-image]][aone-ci-url]
+
+[aone-ci-url]: https://aone-api.alibaba-inc.com/ak/testservice/api/badge/link?repo=https://code.alipay.com/Dipper-Map/doodle-jump.git
+[build-status-image]: https://aone-api.alibaba-inc.com/ak/testservice/api/badge/query?repo=https://code.alipay.com/Dipper-Map/doodle-jump.git&type=%E6%9E%84%E5%BB%BA%E7%8A%B6%E6%80%81
+[line-coverage-image]: https://aone-api.alibaba-inc.com/ak/testservice/api/badge/query?repo=https://code.alipay.com/Dipper-Map/doodle-jump.git&type=%E5%8D%95%E6%B5%8B%E8%A1%8C%E8%A6%86%E7%9B%96%E7%8E%87
+[branch-coverage-image]: https://aone-api.alibaba-inc.com/ak/testservice/api/badge/query?repo=https://code.alipay.com/Dipper-Map/doodle-jump.git&type=%E5%8D%95%E6%B5%8B%E5%88%86%E6%94%AF%E8%A6%86%E7%9B%96%E7%8E%87
+
+--------------------
+
 ## 命令
 
 - `npm install`: 安装依赖
